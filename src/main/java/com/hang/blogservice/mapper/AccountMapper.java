@@ -2,7 +2,7 @@ package com.hang.blogservice.mapper;
 
 import com.hang.blogservice.dto.AccountRequestDto;
 import com.hang.blogservice.dto.AccountResponseDto;
-import com.hang.blogservice.enity.Account;
+import com.hang.blogservice.entity.Account;
 
 import java.time.LocalDateTime;
 
@@ -15,7 +15,7 @@ public class AccountMapper {
         accountResponseDto.setUpdatedTime(LocalDateTime.parse(account.getUpdatedTime().toString()));
         accountResponseDto.setCreatedTime(LocalDateTime.parse(account.getCreatedTime().toString()));
         accountResponseDto.setLastLoginTime(account.getLoggedInTime());
-        accountResponseDto.setRoleId(account.getRoleId());
+        accountResponseDto.setRoleId(account.getRole().getId());
         return  accountResponseDto;
     }
 

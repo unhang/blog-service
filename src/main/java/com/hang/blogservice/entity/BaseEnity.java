@@ -1,4 +1,4 @@
-package com.hang.blogservice.enity;
+package com.hang.blogservice.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;

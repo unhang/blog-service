@@ -48,4 +48,18 @@ public class GlobalExceptionHandler {
         errors.put("resource:", ex.getMessage());
         return ResponseEntity.badRequest().body(errors);
     }
+
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity<Map<String, String>> AuthenticationExceptionHandler(AuthenticationException ex) {
+        log.warn("Authentication already exists {}", ex.getMessage());
+        Map<String, String> errors = new HashMap<>();
+        return ResponseEntity.badRequest().body(errors);
+    }
+
+    @ExceptionHandler(InvalidTokenException.class)
+    public ResponseEntity<Map<String, String>> InvalidTokenExceptionHandler(InvalidTokenException ex) {
+        log.warn("Invalid token {}", ex.getMessage());
+        Map<String, String> errors = new HashMap<>();
+        return ResponseEntity.badRequest().body(errors);
+    }
 }

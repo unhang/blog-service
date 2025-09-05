@@ -1,16 +1,14 @@
 package com.hang.blogservice.service.impl;
 
-import com.hang.blogservice.configuration.SecurityConfig;
 import com.hang.blogservice.dto.AccountRequestDto;
 import com.hang.blogservice.dto.AccountResponseDto;
 import com.hang.blogservice.dto.AuthResponseDto;
-import com.hang.blogservice.enity.Account;
+import com.hang.blogservice.entity.Account;
 import com.hang.blogservice.exception.EmailExistsException;
 import com.hang.blogservice.exception.ResourceNotFoundException;
 import com.hang.blogservice.mapper.AccountMapper;
 import com.hang.blogservice.repository.AccountRepository;
 import com.hang.blogservice.service.AuthService;
-import com.hang.blogservice.service.PasswordService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -58,7 +56,7 @@ public class AuthServiceImpl implements AuthService {
         account.setUsername(accountRequestDto.getUsername());
         account.setPassword(passwordEncoder.encode(accountRequestDto.getPassword()));
         account.setEmail(accountRequestDto.getEmail());
-        account.setRoleId(1);
+//        account.(1);
         accountRepository.save(account);
 
         return AccountMapper.toDto(account);

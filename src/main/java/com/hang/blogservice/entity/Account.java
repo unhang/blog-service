@@ -1,4 +1,4 @@
-package com.hang.blogservice.enity;
+package com.hang.blogservice.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -47,6 +48,24 @@ public class Account extends BaseEnity {
     @Column(name = "logged_in_time")
     private LocalDateTime loggedInTime;
 
-    @Column(name ="role_id")
-    private Integer roleId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id", nullable = false)
+    private Role role;
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<RefreshToken> refreshTokens;
+
+
+    @PrePersist
+    protected void onCreate() {
+        if (role == null) {
+            // Default to normal user role
+            role = new Role();
+            role.setId(2);
+        }
+    }
+
+    public boolean isAdmin() {
+        return role != null && role.getId().equals(1);
+    }
 }

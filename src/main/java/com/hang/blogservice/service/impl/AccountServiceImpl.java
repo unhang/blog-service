@@ -2,7 +2,7 @@ package com.hang.blogservice.service.impl;
 
 import com.hang.blogservice.dto.AccountRequestDto;
 import com.hang.blogservice.dto.AccountResponseDto;
-import com.hang.blogservice.enity.Account;
+import com.hang.blogservice.entity.Account;
 import com.hang.blogservice.exception.EmailExistsException;
 import com.hang.blogservice.mapper.AccountMapper;
 import com.hang.blogservice.repository.AccountRepository;
@@ -10,7 +10,6 @@ import com.hang.blogservice.service.AccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -36,7 +35,7 @@ public class AccountServiceImpl implements AccountService {
 
         Account account = AccountMapper.toEntity(accountRequestDto);
 //      default role id = 1
-        account.setRoleId(1);
+//        account.setRoleId(1);
         account = accountRepository.save(account);
         return AccountMapper.toDto(account);
     }
